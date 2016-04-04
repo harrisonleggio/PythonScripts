@@ -10,8 +10,11 @@ auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
 
+# gets user's tweets
 user = api.user_timeline('insert twitter username here')
+# simple counter to organize tweets
 i = 0
+# prints each tweet
 for tweet in user:
     print (str(i) + ': ' + tweet.text)
     i += 1
