@@ -1,4 +1,4 @@
-# CREDIT: TWEEPY API DOCS
+# CREDIT: TWEEPY API DOCS WHERE NEEDED
 import tweepy
 
 # keys for my throwaway twitter account
