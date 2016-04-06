@@ -15,7 +15,7 @@ api = tweepy.API(auth)
 user = api.get_user('harrisonleggio')
 
 # Display user's name, follower count, and who they're following (capped at 20) 
-# I believe you can increase it from 20 by adding .items(###) at the end of line 20
+# I believe you can increase it from 20 if you used a cursor and called .items(###) after it.
 print ('Username: ' + user.screen_name)
 print ('Following: ' + str(user.followers_count))
 for friend in user.friends():
