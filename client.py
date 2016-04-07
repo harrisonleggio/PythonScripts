@@ -1,3 +1,5 @@
+#********** CREDIT TO GITHUB.COM/LESP FOR HOW I DISPLAYED TWEETS ONE BY ONE AND HANDLED HOME WINDOW BEHAVIOR ********** 
+
 from easygui import *
 import sys
 import tweepy
