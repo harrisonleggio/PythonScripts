@@ -1,4 +1,3 @@
-# CREDIT TO github.com/lesp FOR HOW I DISPLAYED TWEETS INDIVIDUALLY
 from easygui import *
 import sys
 import tweepy
@@ -15,12 +14,17 @@ api = tweepy.API(auth)
 
 msg = "What would you like to do?"
 title = "Lite Twitter Client"
-choices = ["Search For Someone","Tweet", "Read Timeline"]
+choices = ["Follow Back", "Search For Someone","Tweet", "Read Timeline"]
 
 def readTimeline():
     tweets = api.home_timeline()
     for tweet in tweets:
-        tweets = buttonbox(title="Twitter Feed", msg = tweet.text, choices = ("Next", "Exit"))
+            try:
+                tweets = buttonbox(title="Twitter Feed", msg = tweet.text, choices = ("Next", "Exit"))
+                if tweets !=  "Next":
+                    break
+            except:
+                sys.exit()
  
 def tweet():
     new_tweet = enterbox(msg = "What would you like to tweet?", title="Post Tweet")
@@ -34,8 +38,18 @@ def user():
     twitteruser = enterbox(msg = "Who would you like to search for?", title = "Search")
     tweets = api.user_timeline(twitteruser)
     for tweet in tweets:
-        tweets = buttonbox(title=twitteruser + "'s Tweets", msg = tweet.text, choices = ("Next", "Exit"))
+        try:
+            tweets = buttonbox(title=twitteruser + "'s Tweets", msg = tweet.text, choices = ("Next", "Exit"))
+            if tweets != "Next":
+                break
+        except:
+            sys.exit()
 
+def followBack():
+    for follower in tweepy.Cursor(api.followers).items():
+        follower.follow()
+        msgbox(title="Follow Back", msg="Followed all of your recents followers!")
+        
 while True:
     choice = choicebox(msg, title, choices)
     if choice == "Search For Someone":
@@ -44,6 +58,8 @@ while True:
         tweet()
     elif choice == "Read Timeline":
         readTimeline()
+    elif choice == "Follow Back":
+        followBack()
     else:
         sys.exit()
 
