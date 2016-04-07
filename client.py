@@ -1,3 +1,4 @@
+# CREDIT TO github.com/lesp FOR HOW I DISPLAYED TWEETS INDIVIDUALLY
 from easygui import *
 import sys
 import tweepy
