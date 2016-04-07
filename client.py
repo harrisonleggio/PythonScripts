@@ -15,7 +15,6 @@ api = tweepy.API(auth)
 msg = "What would you like to do?"
 title = "Lite Twitter Client"
 choices = ["Search For Someone","Tweet", "Read Timeline"]
-choice = choicebox(msg, title, choices)
 
 def readTimeline():
     tweets = api.home_timeline()
@@ -48,17 +47,16 @@ def user():
             + "\n\n" + tweets[15].text + "\n\n" + tweets[16].text + "\n\n" + tweets[17].text
            + "\n\n" + tweets[18].text + "\n\n" + tweets[19].text)
 
-if choice == "Read Timeline":
-    readTimeline()
+while True:
     choice = choicebox(msg, title, choices)
-
-if choice == "Tweet":
-    tweet()
-    choice = choicebox(msg, title, choices)
-
-if choice == "Search For Someone":
-    user()
-    choice = choicebox(msg, title, choices)
+    if choice == "Search For Someone":
+        user()
+    elif choice == "Tweet":
+        tweet()
+    elif choice == "Read Timeline":
+        readTimeline()
+    else:
+        sys.exit()
 
 
 
